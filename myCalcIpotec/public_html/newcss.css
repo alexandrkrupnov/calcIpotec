@@ -63,3 +63,25 @@ button {
     text-align: center;
 }
 
+input[type=range]
+{
+-webkit-appearance: none
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+border-radius: 10px;
+height: 10px;
+border: 1px solid blue;
+background-color: white;
+}
+
+input[type=range]::-webkit-slider-thumb {
+-webkit-appearance: none;
+background-color: blue;
+border: 3px solid blue;
+width: 20px;
+height: 20px;
+border-radius: 10px;
+cursor: pointer;
+margin-top: -5px;
+}

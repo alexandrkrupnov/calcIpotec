@@ -33,8 +33,8 @@ function calcPayment() {
     let denominator = Math.pow(1+percentCreditMounth,countPeriod)-1;
     let fraction = numerator/denominator;
 
-    aPayment = ammountCredit*fraction;
-  
-    document.getElementById('result').value = aPayment;
+    aPayment = (ammountCredit*fraction);
+    let x = aPayment.toFixed(2);
+    document.getElementById('result').value = x;
 }
 
