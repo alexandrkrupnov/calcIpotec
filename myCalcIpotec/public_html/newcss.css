@@ -85,3 +85,36 @@ border-radius: 10px;
 cursor: pointer;
 margin-top: -5px;
 }
+
+.mycol1 {
+    height: 100px;
+    background-color: yellow;
+}
+
+.mycol2 {
+    height: 100px;
+    background-color: green;
+}
+
+.mycol3 {
+    height: 100px;
+    background-color: black;
+}
+
+.mycol4 {
+    height: 100px;
+    background-color: blue;
+}
+
+.mycol5 {
+    height: 100px;
+    background-color: orange;
+}
+.mycol6 {
+    height: 100px;
+    background-color: lightblue;
+}
+.mycol7 {
+    height: 100px;
+    background-color: lightcoral;
+}
