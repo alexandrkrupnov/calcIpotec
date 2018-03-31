@@ -28,7 +28,7 @@ and open the template in the editor.
                 </div>
                 <div class="column2">
                     <div class="row">
-                        <input type="text" size="20">
+                        <input type="text" size="20" id="price" value="2000000">
                         <select class="currency">
                             <option>&#8399;</option>
                             <option>&euro;</option>
@@ -36,13 +36,13 @@ and open the template in the editor.
                         </select>
                     </div>
                     <div class="row">
-                        <input type="text" size="20">
+                        <input type="text" size="20" id="initialPayment" value="1000000">
                     </div>
                     <div class="row">
-                        <input type="text" size="20">
-                        <select>
-                            <option>мес.</option>
+                        <input type="text" size="20" id="period" value="10">
+                        <select id="typePeriod">
                             <option>лет</option>
+                            <option>мес.</option>                            
                         </select>
                     </div>
                     <div class="row">
@@ -52,7 +52,10 @@ and open the template in the editor.
 
                 </div>
                 <div class="buttonWrapper">
-                    <button>Рассчитать</button>
+                    <button onclick="calcPayment()">Рассчитать</button>
+                </div>
+                <div class="buttonWrapper">
+                    <input type="text" id="result">
                 </div>
             </div>
         </div>

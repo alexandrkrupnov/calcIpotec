@@ -15,7 +15,26 @@ function changePercentText() {
     document.getElementById('percentRange').value = percent;
 }
 
-function nnn() {
+function calcPayment() {
+    let aPayment, ammountCredit, percentCredit, countPeriod;
+    let price = Number(document.getElementById('price').value);
+    let initialPayment = Number(document.getElementById('initialPayment').value);
+    let typePeriod = document.getElementById('typePeriod').value;
     
+    ammountCredit = price - initialPayment;
+    percentCredit = Number(document.getElementById('percentText').value)/100;
+        
+    let percentCreditMounth = percentCredit/12;
+    countPeriod = Number(document.getElementById('period').value);
+ 
+    if(typePeriod ==="лет")
+        countPeriod = countPeriod * 12;
+    let numerator = percentCreditMounth*Math.pow(1+percentCreditMounth,countPeriod);
+    let denominator = Math.pow(1+percentCreditMounth,countPeriod)-1;
+    let fraction = numerator/denominator;
+
+    aPayment = ammountCredit*fraction;
+  
+    document.getElementById('result').value = aPayment;
 }
 
