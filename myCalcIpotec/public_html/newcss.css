@@ -21,7 +21,7 @@ and open the template in the editor.
     font-style: italic;
     text-align: center;
     padding: 20px;
-    color: white;
+    color: black;
     font-size: 14px;
 }
 
@@ -86,35 +86,16 @@ cursor: pointer;
 margin-top: -5px;
 }
 
-.mycol1 {
-    height: 100px;
-    background-color: yellow;
+.mycol {
+    height: 500px;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
 }
 
-.mycol2 {
-    height: 100px;
-    background-color: green;
-}
-
-.mycol3 {
-    height: 100px;
-    background-color: black;
-}
-
-.mycol4 {
-    height: 100px;
-    background-color: blue;
-}
-
-.mycol5 {
-    height: 100px;
-    background-color: orange;
-}
-.mycol6 {
-    height: 100px;
-    background-color: lightblue;
-}
-.mycol7 {
-    height: 100px;
-    background-color: lightcoral;
+.hr {
+    border-top-width: 10px;
+    border-top-style: double;
+    border-top-color: gold;
 }
