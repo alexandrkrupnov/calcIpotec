@@ -24,17 +24,84 @@ function calcPayment() {
     ammountCredit = price - initialPayment;
     percentCredit = Number(document.getElementById('percentText').value)/100;
         
-    let percentCreditMounth = percentCredit/12;
+    let percentCreditMonth = percentCredit/12;
     countPeriod = Number(document.getElementById('period').value);
  
     if(typePeriod ==="лет")
         countPeriod = countPeriod * 12;
-    let numerator = percentCreditMounth*Math.pow(1+percentCreditMounth,countPeriod);
-    let denominator = Math.pow(1+percentCreditMounth,countPeriod)-1;
+    let numerator = percentCreditMonth*Math.pow(1+percentCreditMonth,countPeriod);
+    let denominator = Math.pow(1+percentCreditMonth,countPeriod)-1;
     let fraction = numerator/denominator;
 
     aPayment = (ammountCredit*fraction);
     let x = aPayment.toFixed(2);
     document.getElementById('result').value = x;
+    monthlyPayment(ammountCredit, percentCreditMonth, countPeriod, x);
+}
+
+function monthlyPayment(ammountCredit, percentCreditMonth, countPeriod, monthPayment) {
+    let i;
+    let monthPaymentPercent = [];
+    let monthPaymentCredit = [];
+    let balance = [];
+    let table = document.createElement('table');
+    table.className = 'mytable';
+    //add head table
+    let tr = document.createElement('tr');
+    let td1 = document.createElement('td');
+    td1.innerHTML = 'Номер платежа';
+    let td2 = document.createElement('td');
+    td2.innerHTML = 'Платеж по процентам';
+    let td3 = document.createElement('td');
+    td3.innerHTML = 'Платеж по основному долгу';
+    let td4 = document.createElement('td');
+    td4.innerHTML = 'Остаток';
+    td1.className = 'captiontd';
+    td2.className = 'captiontd';
+    td3.className = 'captiontd';
+    td4.className = 'captiontd';
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    table.appendChild(tr);
+    //end of head table
+    
+    
+    let parentTable = document.getElementById('resulttable');
+    for (i = 0; i < countPeriod; i++)
+    {
+        monthPaymentPercent[i] = ammountCredit * percentCreditMonth;
+        monthPaymentCredit[i] = monthPayment - monthPaymentPercent;
+        balance[i] = ammountCredit - monthPaymentCredit;
+        console.log(monthPaymentPercent[i]);
+        console.log(monthPaymentCredit[i]);
+        console.log(balance[i]);
+        buildTable(i, monthPaymentPercent[i], monthPaymentCredit[i], balance[i], table, parentTable)
+    }
+}
+
+
+
+function buildTable(i, monthPaymentPercent, monthPaymentCredit, balance,  table, parentTable) {
+    let tr = document.createElement('tr');
+    let td1 = document.createElement('td');
+    td1.innerHTML = i;
+    let td2 = document.createElement('td');
+    td2.innerHTML = monthPaymentPercent;
+    let td3 = document.createElement('td');
+    td3.innerHTML = monthPaymentCredit;
+    let td4 = document.createElement('td');
+    td4.innerHTML = balance;
+    td1.className = 'mytd';
+    td2.className = 'mytd';
+    td3.className = 'mytd';
+    td4.className = 'mytd';
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    table.appendChild(tr);
+    parentTable.appendChild(table);
 }
 

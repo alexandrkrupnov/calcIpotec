@@ -108,3 +108,20 @@ margin-top: -5px;
 .calc {
     margin-top: 5%;
 }
+
+.mytable {
+    margin: auto;
+    margin-top: 20px;
+    border: blue 5px solid;
+}
+
+.mytd {
+    border-width: 1px;
+    border-color: #9acfea;
+    border-style: solid;
+}
+.captiontd {
+    border-width: 2px;
+    border-color: blue;
+    border-style: solid;
+}
