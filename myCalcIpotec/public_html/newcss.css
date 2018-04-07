@@ -17,27 +17,24 @@ and open the template in the editor.
 }
 
 .text {
-    font-family: sans-serif;
+    font-family: open sans;
     font-style: italic;
-    text-align: center;
-    padding: 20px;
+    text-align: justify;
+    padding: 10px;
     color: black;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .column1 {
     float: left;
     margin-left: 10px;
-    width: 40%;
+    width: 45%;
 }
 
 .column2 {
     
 }
 
-.row {
-    height: 30px;
-}
 
 .range {
     width: 164px;
@@ -65,7 +62,9 @@ button {
 
 input[type=range]
 {
--webkit-appearance: none
+-webkit-appearance: none;
+-moz-appearance: none;
+
 }
 
 input[type=range]::-webkit-slider-runnable-track {
@@ -97,5 +96,15 @@ margin-top: -5px;
 .hr {
     border-top-width: 10px;
     border-top-style: double;
-    border-top-color: gold;
+    border-top-color: lightgrey;
+    margin-top: 1px;
+}
+
+.myrow {
+    height: 40px;
+    margin-left: 2px;
+}
+
+.calc {
+    margin-top: 5%;
 }
