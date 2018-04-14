@@ -21,29 +21,22 @@ function changePercentText() {
 }
 
 function calcPayment() {
-    
     let price = Number(document.getElementById('price').value);
     let initialPayment = Number(document.getElementById('initialPayment').value);
     let typePeriod = document.getElementById('typePeriod').value;
-    
     ammountCredit = price - initialPayment;
     percentCredit = Number(document.getElementById('percentText').value)/100;
-        
     percentCreditMonth = percentCredit/12;
     percentCreditMonth = parseFloat(percentCreditMonth.toFixed(4));
     countPeriod = Number(document.getElementById('period').value);
- 
     if(typePeriod ==="лет")
         countPeriod = countPeriod * 12;
     let numerator = percentCreditMonth*Math.pow(1+percentCreditMonth,countPeriod);
     let denominator = Math.pow(1+percentCreditMonth,countPeriod)-1;
     let fraction = numerator/denominator;
-
     aPayment = (ammountCredit*fraction);
     aPayment = aPayment.toFixed(2);
     document.getElementById('result').value = aPayment;
-    //console.log('aPayment = ' + aPayment);
-    //console.log('percentCreditMonth = ' + percentCreditMonth);
     monthlyPayment();
 }
 
@@ -72,18 +65,28 @@ function monthlyPayment() {
     table.appendChild(tr);
     //end of head table
     let parentTable = document.getElementById('resulttable');
-    
-    for (i = 0; i < countPeriod; i++)
+    for (i = 1; i <= countPeriod; i++)
     {
         monthPaymentPercent[i] = ammountCredit * percentCreditMonth;
+        let w = Number(monthPaymentPercent[i]).toFixed(2);
+        monthPaymentPercent[i] = w;
         monthPaymentCredit[i] = aPayment - monthPaymentPercent[i];
+        w = Number(monthPaymentCredit[i]).toFixed(2);
+        monthPaymentCredit[i] = w;
         balance[i] = ammountCredit - monthPaymentCredit[i];
+        w = Number(balance[i]).toFixed(2);
+        balance[i] = w;
         ammountCredit = ammountCredit - monthPaymentCredit[i];
-        console.log('month = ' + i);
-        console.log('monthPaymentPercent = ' + monthPaymentPercent[i]);
-        console.log('monthPaymentCredit = ' + monthPaymentCredit[i]);
-        console.log('balance = ' + balance[i]);
-        console.log('-/\-/\-/\-');
+        if (i === countPeriod)
+        {
+            if (balance[i] !== 0)
+            {
+                aPayment = Number(aPayment) + Number(balance[i]);
+                monthPaymentCredit[i] = Number(monthPaymentCredit[i]) + Number(balance[i]);
+                balance[i] = balance[i] - balance[i];
+                alert('Последний платеж = ' + aPayment);
+            }
+        }
         buildTable(i, parentTable, table);
     }
 }
