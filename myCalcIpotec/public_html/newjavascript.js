@@ -8,6 +8,7 @@ var percentCreditMonth;
 var monthPaymentPercent = [];
 var monthPaymentCredit = [];
 var balance = [];
+var overPayments = 0;
 
 function changePercentRange() {
     let percent = document.getElementById('percentRange').value;
@@ -68,13 +69,16 @@ function monthlyPayment() {
     for (i = 1; i <= countPeriod; i++)
     {
         monthPaymentPercent[i] = ammountCredit * percentCreditMonth;
-        let w = Number(monthPaymentPercent[i]).toFixed(2);
+        let w = parseFloat((monthPaymentPercent[i]).toFixed(2));
+        overPayments = Number(overPayments) + w;
+        overPayments = overPayments.toFixed(2);
         monthPaymentPercent[i] = w;
         monthPaymentCredit[i] = aPayment - monthPaymentPercent[i];
-        w = Number(monthPaymentCredit[i]).toFixed(2);
+        w = parseFloat((monthPaymentCredit[i]).toFixed(2));
+        
         monthPaymentCredit[i] = w;
         balance[i] = ammountCredit - monthPaymentCredit[i];
-        w = Number(balance[i]).toFixed(2);
+        w = parseFloat((balance[i]).toFixed(2));
         balance[i] = w;
         ammountCredit = ammountCredit - monthPaymentCredit[i];
         if (i === countPeriod)
@@ -84,11 +88,17 @@ function monthlyPayment() {
                 aPayment = Number(aPayment) + Number(balance[i]);
                 monthPaymentCredit[i] = Number(monthPaymentCredit[i]) + Number(balance[i]);
                 balance[i] = balance[i] - balance[i];
-                alert('Последний платеж = ' + aPayment);
+                
             }
         }
         buildTable(i, parentTable, table);
+        
     }
+    let inputRes = document.getElementById('resultregion');
+    let addel = document.createElement('p');
+    addel.innerHTML = 'Переплата по кредиту составит ' + overPayments + ' рублей';
+    inputRes.appendChild(addel);
+    //alert('переплата = ' + overPayments);
 }
 
 
