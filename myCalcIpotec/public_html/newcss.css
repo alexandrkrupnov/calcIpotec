@@ -112,16 +112,17 @@ margin-top: -5px;
 .mytable {
     margin: auto;
     margin-top: 20px;
-    border: blue 5px solid;
+    border: blue 3px solid;
 }
 
 .mytd {
     border-width: 1px;
-    border-color: #9acfea;
+    border-right-width: 3px;
+    border-color: blue;
     border-style: solid;
 }
 .captiontd {
-    border-width: 2px;
+    border-width: 3px;
     border-color: blue;
     border-style: solid;
 }

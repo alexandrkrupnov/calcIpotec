@@ -25,6 +25,7 @@ function calcPayment() {
     percentCredit = Number(document.getElementById('percentText').value)/100;
         
     let percentCreditMonth = percentCredit/12;
+    percentCreditMonth = parseFloat(percentCreditMonth.toFixed(4));
     countPeriod = Number(document.getElementById('period').value);
  
     if(typePeriod ==="лет")
@@ -36,6 +37,8 @@ function calcPayment() {
     aPayment = (ammountCredit*fraction);
     let x = aPayment.toFixed(2);
     document.getElementById('result').value = x;
+    console.log('aPayment = ' + aPayment);
+    console.log('percentCreditMonth = ' + percentCreditMonth);
     monthlyPayment(ammountCredit, percentCreditMonth, countPeriod, x);
 }
 
