@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var aPayment, ammountCredit, percentCredit, countPeriod;
+var percentCreditMonth;
+var monthPaymentPercent = [];
+var monthPaymentCredit = [];
+var balance = [];
 
 function changePercentRange() {
     let percent = document.getElementById('percentRange').value;
@@ -16,7 +21,7 @@ function changePercentText() {
 }
 
 function calcPayment() {
-    let aPayment, ammountCredit, percentCredit, countPeriod;
+    
     let price = Number(document.getElementById('price').value);
     let initialPayment = Number(document.getElementById('initialPayment').value);
     let typePeriod = document.getElementById('typePeriod').value;
@@ -24,7 +29,7 @@ function calcPayment() {
     ammountCredit = price - initialPayment;
     percentCredit = Number(document.getElementById('percentText').value)/100;
         
-    let percentCreditMonth = percentCredit/12;
+    percentCreditMonth = percentCredit/12;
     percentCreditMonth = parseFloat(percentCreditMonth.toFixed(4));
     countPeriod = Number(document.getElementById('period').value);
  
@@ -35,18 +40,15 @@ function calcPayment() {
     let fraction = numerator/denominator;
 
     aPayment = (ammountCredit*fraction);
-    let x = aPayment.toFixed(2);
-    document.getElementById('result').value = x;
-    console.log('aPayment = ' + aPayment);
-    console.log('percentCreditMonth = ' + percentCreditMonth);
-    monthlyPayment(ammountCredit, percentCreditMonth, countPeriod, x);
+    aPayment = aPayment.toFixed(2);
+    document.getElementById('result').value = aPayment;
+    //console.log('aPayment = ' + aPayment);
+    //console.log('percentCreditMonth = ' + percentCreditMonth);
+    monthlyPayment();
 }
 
-function monthlyPayment(ammountCredit, percentCreditMonth, countPeriod, monthPayment) {
-    let i;
-    let monthPaymentPercent = [];
-    let monthPaymentCredit = [];
-    let balance = [];
+function monthlyPayment() {
+    let i;  
     let table = document.createElement('table');
     table.className = 'mytable';
     //add head table
@@ -69,33 +71,35 @@ function monthlyPayment(ammountCredit, percentCreditMonth, countPeriod, monthPay
     tr.appendChild(td4);
     table.appendChild(tr);
     //end of head table
-    
-    
     let parentTable = document.getElementById('resulttable');
+    
     for (i = 0; i < countPeriod; i++)
     {
         monthPaymentPercent[i] = ammountCredit * percentCreditMonth;
-        monthPaymentCredit[i] = monthPayment - monthPaymentPercent;
-        balance[i] = ammountCredit - monthPaymentCredit;
-        console.log(monthPaymentPercent[i]);
-        console.log(monthPaymentCredit[i]);
-        console.log(balance[i]);
-        buildTable(i, monthPaymentPercent[i], monthPaymentCredit[i], balance[i], table, parentTable)
+        monthPaymentCredit[i] = aPayment - monthPaymentPercent[i];
+        balance[i] = ammountCredit - monthPaymentCredit[i];
+        ammountCredit = ammountCredit - monthPaymentCredit[i];
+        console.log('month = ' + i);
+        console.log('monthPaymentPercent = ' + monthPaymentPercent[i]);
+        console.log('monthPaymentCredit = ' + monthPaymentCredit[i]);
+        console.log('balance = ' + balance[i]);
+        console.log('-/\-/\-/\-');
+        buildTable(i, parentTable, table);
     }
 }
 
 
 
-function buildTable(i, monthPaymentPercent, monthPaymentCredit, balance,  table, parentTable) {
+function buildTable(i, parentTable, table) {
     let tr = document.createElement('tr');
     let td1 = document.createElement('td');
     td1.innerHTML = i;
     let td2 = document.createElement('td');
-    td2.innerHTML = monthPaymentPercent;
+    td2.innerHTML = monthPaymentPercent[i];
     let td3 = document.createElement('td');
-    td3.innerHTML = monthPaymentCredit;
+    td3.innerHTML = monthPaymentCredit[i];
     let td4 = document.createElement('td');
-    td4.innerHTML = balance;
+    td4.innerHTML = balance[i];
     td1.className = 'mytd';
     td2.className = 'mytd';
     td3.className = 'mytd';
